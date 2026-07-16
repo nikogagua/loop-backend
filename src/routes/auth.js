@@ -10,4 +10,14 @@ router.get("/me", authenticate, (req, res) => {
   res.status(200).json({ user: req.user });
 });
 
+router.get("/verify-email/:token", authController.verifyEmail);
+
+router.post(
+  "/resend-verification",
+  authenticate,
+  authController.resendVerification,
+);
+router.post("/forgot-password", authController.forgotPassword);
+router.post("/reset-password/:token", authController.resetPassword);
+
 module.exports = router;
