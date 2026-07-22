@@ -24,10 +24,13 @@ exports.createPost = async (req, res, next) => {
         .json({ message: "Body must be 3-2000 characters" });
     }
 
+    // const image = req.file ? `/uploads/${req.file.filename}` : undefined;
+    const image = req.file ? req.file.path : undefined;
+
     const post = await Post.create({
       title: cleanTitle,
       body: cleanBody,
-      image: imageUrl,
+      image,
       author,
     });
 
