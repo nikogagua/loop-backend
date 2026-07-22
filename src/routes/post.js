@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const postController = require("../controllers/postController");
+const upload = require("../config/multer");
 const {
   authenticate,
   adminOnly,
@@ -11,6 +12,7 @@ router.post(
   "/create-post",
   authenticate,
   requireVerified,
+  upload.single("image"),
   postController.createPost,
 );
 router.get("/", postController.getAllPosts);
