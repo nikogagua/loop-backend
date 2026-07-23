@@ -18,7 +18,12 @@ router.post(
 router.get("/", postController.getAllPosts);
 router.get("/my-posts", authenticate, postController.getMyPosts);
 router.delete("/:id", authenticate, postController.deletePost);
-router.put("/:id", authenticate, postController.updatePost);
+router.put(
+  "/:id",
+  authenticate,
+  upload.single("image"),
+  postController.updatePost,
+);
 router.get("/:id", postController.getPostById);
 
 module.exports = router;
