@@ -1,5 +1,5 @@
 const Post = require("../models/post");
-const User = require("../models/User");
+const User = require("../models/user");
 
 exports.createPost = async (req, res, next) => {
   try {
@@ -54,14 +54,12 @@ exports.getAllPosts = async (req, res, next) => {
 
     const totalPosts = await Post.countDocuments();
 
-    res
-      .status(200)
-      .json({
-        posts,
-        currentPage: page,
-        totalPages: Math.ceil(totalPosts / limit),
-        totalPosts,
-      });
+    res.status(200).json({
+      posts,
+      currentPage: page,
+      totalPages: Math.ceil(totalPosts / limit),
+      totalPosts,
+    });
   } catch (err) {
     res.status(500).json({ message: "Server error", error: err.message });
   }
