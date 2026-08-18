@@ -107,7 +107,11 @@ exports.updatePost = async (req, res, next) => {
 
     post.title = req.body.title ?? post.title;
     post.body = req.body.body ?? post.body;
-    post.image = req.file ? req.file.path : post.image;
+    if (req.file) {
+      post.image = req.file.path;
+    } else if (req.body.imageRemoved === "true") {
+      post.image = undefined;
+    }
     await post.save();
 
     res.status(200).json({ message: "Post updated successfully", post });
