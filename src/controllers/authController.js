@@ -63,7 +63,7 @@ exports.register = async (req, res, next) => {
     user.verificationTokenExpires = Date.now() + 15 * 60 * 1000;
     await user.save();
 
-    const verifyUrl = `http://localhost:3000/api/auth/verify-email/${verificationToken}`;
+    const verifyUrl = `${process.env.BACKEND_URL}/api/auth/verify-email/${verificationToken}`;
 
     await sendEmail({
       to: user.email,
@@ -204,7 +204,7 @@ exports.forgotPassword = async (req, res, next) => {
 
     await user.save();
 
-    const resetUrl = `http://localhost:3000/api/auth/reset-password/${passwordResetToken}`;
+    const resetUrl = `${process.env.BACKEND_URL}/api/auth/reset-password/${passwordResetToken}`;
 
     await sendEmail({
       to: user.email,
