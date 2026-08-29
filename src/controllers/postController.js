@@ -76,6 +76,9 @@ exports.getPostById = async (req, res, next) => {
 
     res.status(200).json({ post });
   } catch (err) {
+    if (err.name === "CastError") {
+      return res.status(404).json({ message: "Post not found" });
+    }
     res.status(500).json({ message: "Server error", error: err.message });
   }
 };
