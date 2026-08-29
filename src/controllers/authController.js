@@ -142,7 +142,7 @@ exports.resendVerification = async (req, res, next) => {
     user.verificationTokenExpires = Date.now() + 15 * 60 * 1000;
     await user.save();
 
-    const verifyUrl = `http://localhost:3000/api/auth/verify-email/${verificationToken}`;
+    const verifyUrl = `${process.env.BACKEND_URL}/api/auth/verify-email/${verificationToken}`;
 
     await sendEmail({
       to: user.email,
