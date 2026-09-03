@@ -3,7 +3,7 @@
 Loop is a Reddit-style posting app. Users can register, verify their email, create text/image posts, and manage their own content. This repo is the backend REST API.
 
 **Live API:** https://loop-backend-mvpx.onrender.com
-**Frontend repo:** [loop-frontend](link-to-that-repo)
+**Frontend repo:** [loop-frontend](https://github.com/nikogagua/loop-frontend)
 **Live app:** https://loop-frontend-roan.vercel.app
 
 ## Features
