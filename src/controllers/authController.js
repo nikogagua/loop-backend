@@ -63,7 +63,7 @@ exports.register = async (req, res, next) => {
     user.verificationTokenExpires = Date.now() + 15 * 60 * 1000;
     await user.save();
 
-    const verifyUrl = `${process.env.BACKEND_URL}/api/auth/verify-email/${verificationToken}`;
+    const verifyUrl = `${process.env.FRONTEND_URL}/verify-email/${verificationToken}`;
 
     await sendEmail({
       to: user.email,
@@ -142,7 +142,7 @@ exports.resendVerification = async (req, res, next) => {
     user.verificationTokenExpires = Date.now() + 15 * 60 * 1000;
     await user.save();
 
-    const verifyUrl = `${process.env.BACKEND_URL}/api/auth/verify-email/${verificationToken}`;
+    const verifyUrl = `${process.env.FRONTEND_URL}/verify-email/${verificationToken}`;
 
     await sendEmail({
       to: user.email,
@@ -204,7 +204,7 @@ exports.forgotPassword = async (req, res, next) => {
 
     await user.save();
 
-    const resetUrl = `${process.env.BACKEND_URL}/api/auth/reset-password/${passwordResetToken}`;
+    const resetUrl = `${process.env.FRONTEND_URL}/reset-password/${passwordResetToken}`;
 
     await sendEmail({
       to: user.email,
